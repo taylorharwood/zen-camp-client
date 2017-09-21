@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ApolloClient, { createNetworkInterface } from 'apollo-client';
-import { ApolloProvider, graphql } from 'react-apollo';
-import gql from 'graphql-tag';
+import { ApolloProvider } from 'react-apollo';
+
+import AddressSearch from './components/AddressSearch';
+import Campgrounds from './components/Campgrounds';
 
 const networkInterface = createNetworkInterface({
   uri: process.env.GRAPH_QL_SERVER_URL
@@ -13,38 +15,52 @@ const client = new ApolloClient({
 });
 
 class App extends Component {
-  render() {
-    if (this.props.data.loading) {
-      return <h3>Loading...</h3>;
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      latitude: null,
+      longitude: null
+    }
+  }
+
+  setLatLong(latitude, longitude) {
+    this.setState({
+      latitude,
+      longitude
+    })
+  }
+
+  renderCampgrounds() {
+    const { latitude, longitude } = this.state;
+
+    if (latitude && longitude) {
+      return (
+        <Campgrounds
+          latitude={latitude}
+          longitude={longitude}
+        />
+      );
     }
 
+    return false;
+  }
+
+  render() {
     return (
       <div>
-        {this.props.data.getCampgrounds.map(campground => <p>{campground.facilityName}</p>)}
+        <AddressSearch
+          setLatLong={(latitude, longitude) => this.setLatLong(latitude, longitude)}
+        />
+        {this.renderCampgrounds()}
       </div>
     );
   }
 }
 
-const query = gql`
-  query {
-    getCampgrounds(latitude: "34.244443", longitude: "-118.238456") {
-      contractID
-      facilityName
-      facilityID
-      facilityPhoto
-      sitesWithWaterHookup
-      sitesWithWaterfront
-      availabilityStatus
-    }
-  }
-`;
-
-const AppWithData = graphql(query)(App);
-
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <AppWithData />
+    <App />
   </ApolloProvider>, 
   document.getElementById('root')
 );
