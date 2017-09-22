@@ -1,0 +1,19 @@
+.left-nav {
+  width: 200px;
+  height: 100vh;
+  z-index: 999;
+
+  background: #f7f7f7;
+
+  &__items {
+    margin: 0;
+  }
+
+  &__item {
+    font-weight: 300;
+    list-style: none;
+    padding: .75rem;
+    font-size: 1rem;
+    border-bottom: 1px solid #eee;
+  }
+}

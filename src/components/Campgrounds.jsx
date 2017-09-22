@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
+import Map from './Map';
+
 class Campgrounds extends Component {
   render() {
-    const { data } = this.props;
+    const { data, latitude, longitude } = this.props;
 
     if (data.loading) {
       return <h3>Loading...</h3>;
@@ -12,7 +14,13 @@ class Campgrounds extends Component {
 
     return (
       <div className="campgrounds">
-        {data.getCampgrounds.map(campground => <p>{campground.facilityName}</p>)}
+        <Map
+          latitude={latitude}
+          longitude={longitude}
+          campgrounds={data.getCampgrounds}
+        />
+
+        {/*{data.getCampgrounds.map(campground => <p>{campground.facilityName}</p>)}*/}
       </div>
     );
   }
@@ -21,10 +29,12 @@ class Campgrounds extends Component {
 const query = gql`
   query getCampgrounds($latitude: String!, $longitude: String!) {
     getCampgrounds(latitude: $latitude, longitude: $longitude) {
-      contractID
       facilityName
       facilityID
       facilityPhoto
+      latitude
+      longitude
+      contractID
       sitesWithWaterHookup
       sitesWithWaterfront
       availabilityStatus

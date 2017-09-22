@@ -38,12 +38,13 @@ class AddressSearch extends Component {
       <div className="address-search">
         <form onSubmit={evt => this.onSubmit(evt)} className="address-search__form">
           <input
+            placeholder="Enter your address..."
             value={this.state.address}
             onChange={evt => this.setState({ address: evt.target.value })}
             type="text"
             className="address-search__input"
           />
-          <button type="submit">Find campsites</button>
+          <button type="submit" className="primary button">Find campsites</button>
         </form>
       </div>
     );
