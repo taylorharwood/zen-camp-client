@@ -9,7 +9,13 @@ class Campgrounds extends Component {
     const { data, latitude, longitude } = this.props;
 
     if (data.loading) {
-      return <h3>Loading...</h3>;
+      return (
+        <article className="campgrounds__loading message is-success">
+          <div className="message-body">
+            Pack your tents and boots! We're finding you campsites now.
+          </div>
+        </article>
+      );
     }
 
     return (
@@ -19,8 +25,6 @@ class Campgrounds extends Component {
           longitude={longitude}
           campgrounds={data.getCampgrounds}
         />
-
-        {/*{data.getCampgrounds.map(campground => <p>{campground.facilityName}</p>)}*/}
       </div>
     );
   }

@@ -7,6 +7,7 @@ class LeftNav extends Component {
         <ul className="left-nav__items">
           <li className="left-nav__item">Home</li>
           <li className="left-nav__item">Find Camps</li>
+          <li className="left-nav__item">Your Favorites</li>
         </ul>
       </div>
     );
