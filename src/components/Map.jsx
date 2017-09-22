@@ -11,7 +11,8 @@ class Map extends Component {
 
     const map = new google.maps.Map(document.getElementById('map'), {
       zoom: 10,
-      center: latLng
+      center: latLng,
+      mapTypeId: 'terrain'
     });
 
     // customize so this looks like "home"
