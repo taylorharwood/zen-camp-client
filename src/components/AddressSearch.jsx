@@ -3,7 +3,20 @@ import AddressSearchFilters from './AddressSearchFilters';
 
 class AddressSearch extends Component {
   componentDidMount() {
+    const addressSearchAutocompleteInput = document.getElementById('address-search-autocomplete-input');
+
     this.geocoder = new google.maps.Geocoder();
+    this.autocomplete = new google.maps.places.Autocomplete(addressSearchAutocompleteInput, {
+      types: ['(cities)']
+    });
+
+    google.maps.event.addListener(this.autocomplete, 'place_changed', () => {
+      const formattedAddress = this.autocomplete.getPlace().formatted_address;
+
+      if (formattedAddress) {
+        this.props.setAddress(formattedAddress);
+      }
+    });
   }
 
   setLatLng() {
@@ -42,6 +55,7 @@ class AddressSearch extends Component {
             <div className="address-search__input field has-addons">
               <p className="control is-expanded">
                 <input
+                  id="address-search-autocomplete-input"
                   className="input is-primary is-medium"
                   placeholder="Enter your address..."
                   value={address}
