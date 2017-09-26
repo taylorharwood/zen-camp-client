@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 
 class Map extends Component {
+  // todo refactor
   componentDidMount() {
     const { latitude, longitude, campgrounds } = this.props;
 
     const latLng = {
-      lat: latitude,
-      lng: longitude
+      lat: latitude || 90,
+      lng: longitude || 90
     };
 
     const map = new google.maps.Map(document.getElementById('map'), {

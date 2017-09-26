@@ -4,12 +4,13 @@ import { ApolloProvider } from 'react-apollo';
 
 import App from './components/App';
 import client from './apollo/client';
+import store from './store/store';
 
 // styles root:
 import './styles/styles.scss';
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
+  <ApolloProvider store={store} client={client}>
     <App />
   </ApolloProvider>, 
   document.getElementById('root')
