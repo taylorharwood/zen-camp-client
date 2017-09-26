@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 
 import Map from './Map';
+import CampgroundList from './CampgroundList';
 
 class Campgrounds extends Component {
   render() {
@@ -9,6 +10,7 @@ class Campgrounds extends Component {
 
     return (
       <div className="campgrounds">
+        <CampgroundList campgrounds={campgrounds} />
         <Map
           latitude={latitude}
           longitude={longitude}
