@@ -36,7 +36,8 @@ class Map extends Component {
         content: `<div id="tooltip">${campground.facilityName}</div>`
       });
 
-      marker.addListener('click', function() {
+      marker.addListener('click', () => {
+        this.props.selectCampground(campground.facilityID);
         infowindow.open(map, marker);
       });
     })

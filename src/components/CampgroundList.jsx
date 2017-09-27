@@ -3,9 +3,20 @@ import CampgroundCard from './CampgroundCard';
 
 class CampgroundList extends Component {
   render() {
+    const { selectedCampground } = this.props;
+
     return (
       <div className="campground-list">
-        { this.props.campgrounds.map(campground => <CampgroundCard campground={campground} />) }
+        {
+          this.props.campgrounds.map(campground => {
+            return (
+              <CampgroundCard
+                campground={campground}
+                selectedCampground={selectedCampground}
+              />
+            );
+          })
+        }
       </div>
     )
   }

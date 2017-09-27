@@ -5,10 +5,11 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import Campgrounds from '../components/Campgrounds';
+import * as actions from '../actions/mapState';
 
 class CampgroundsContainer extends Component {
   render() {
-    const { data, latitude, longitude } = this.props;
+    const { data, latitude, longitude, selectCampground } = this.props;
 
     if (!latitude || !longitude) {
       return (
@@ -34,6 +35,7 @@ class CampgroundsContainer extends Component {
 
     return (
       <Campgrounds
+        selectCampground={selectCampground}
         campgrounds={data && data.getCampgrounds || []}
         latitude={latitude}
         longitude={longitude}
@@ -82,8 +84,12 @@ const mapStateToProps = state => ({
   shouldQueryCampgrounds: state.mapFilterOptions.shouldQueryCampgrounds
 });
 
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(actions, dispatch);
+};
+
 export default compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   graphql(query, {
     skip: ({ latitude, longitude }) => !latitude || !longitude
   })
