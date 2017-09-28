@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 
-import Map from './Map';
 import CampgroundListContainer from '../containers/CampgroundListContainer';
+import Map from './Map';
 
-class Campgrounds extends Component {
+class CampgroundsView extends Component {
   render() {
-    const { campgrounds, latitude, longitude, selectCampground } = this.props;
+    const { campgrounds, latitude, longitude, selectCampground, loading } = this.props;
 
     return (
-      <div className="campgrounds">
+      <div className="campground-view">
         <CampgroundListContainer
+          loading={loading}
           campgrounds={campgrounds}
         />
         <Map
@@ -24,4 +25,4 @@ class Campgrounds extends Component {
   }
 }
 
-export default Campgrounds;
+export default CampgroundsView;

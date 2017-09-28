@@ -7,9 +7,23 @@ class CampgroundCard extends Component {
   scrollIntoView(node) {
     node.scrollIntoView({
       behavior: "smooth",
-      block: "end",
+      block: "start",
       inline: "nearest"
     });
+  }
+
+  formatCampgroundName(facilityName) {
+    return facilityName
+      .trim()
+      .split(' ')
+      .map(word => {
+        if (word.length > 0) {
+          return word[0].toUpperCase() + word.slice(1).toLowerCase()
+        }
+
+        return '';
+      })
+      .join(' ');
   }
 
   componentWillUpdate(nextProps) {
@@ -31,8 +45,27 @@ class CampgroundCard extends Component {
         <div className="card-content">
           <div className="media">
             <div className="media-content">
-              <p className="title is-4">{campground.facilityName}</p>
-              <p className="subtitle is-6">Currently {campground.availabilityStatus === 'Y' ? 'Available' : 'Unavailable'}</p>
+              <p className="title is-4">{this.formatCampgroundName(campground.facilityName)}</p>
+              <br />
+
+              <div className={`notification ${campground.availabilityStatus === 'Y' ? 'is-success' : 'is-danger'}`}>
+                <p className="subtitle is-6 ">
+                  Currently {campground.availabilityStatus === 'Y' ? 'Available' : 'Unavailable'}
+                </p>
+              </div>
+
+              <div className="campground-card__details">
+                {
+                  campground.sitesWithWaterHookup
+                    ? <p><i className="fa fa-bath"></i> Water available</p>
+                    : null
+                }
+                {
+                  campground.sitesWithPetsAllowed
+                    ? <p><i className="fa fa-check"></i> Pet friendly</p>
+                    : null
+                }
+              </div>
             </div>
           </div>
 

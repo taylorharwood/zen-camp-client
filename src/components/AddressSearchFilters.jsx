@@ -50,7 +50,7 @@ class AddressSearchFilters extends Component {
               >
                 {
                   SITE_TYPES.map(option => {
-                    return <option value={option.value}>{option.type}</option>
+                    return <option key={option.value} value={option.value}>{option.type}</option>
                   })
                 }
               </select>
@@ -71,7 +71,7 @@ class AddressSearchFilters extends Component {
               >
                 {
                   AMENITY_TYPES.map(option => {
-                    return <option value={option.value}>{option.type}</option>
+                    return <option key={option.value} value={option.value}>{option.type}</option>
                   })
                 }
               </select>
@@ -92,7 +92,7 @@ class AddressSearchFilters extends Component {
               >
                 {
                   MAX_PEOPLE.map(option => {
-                    return <option value={option}>{option}</option>
+                    return <option key={option} value={option}>{option}</option>
                   })
                 }
               </select>
@@ -113,7 +113,7 @@ class AddressSearchFilters extends Component {
               >
                 {
                   ['YES', 'NO'].map(option => {
-                    return <option value={option}>{option}</option>
+                    return <option key={option} value={option}>{option}</option>
                   })
                 }
               </select>

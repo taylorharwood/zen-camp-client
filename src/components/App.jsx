@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TopNav from './TopNav';
 import LeftNav from './LeftNav';
 import AddressSearchContainer from '../containers/AddressSearchContainer';
-import CampgroundsContainer from '../containers/CampgroundsContainer';
+import CampgroundsViewContainer from '../containers/CampgroundsViewContainer';
 
 class App extends Component {
   render() {
@@ -15,7 +15,7 @@ class App extends Component {
           <div className="app__content">
             {/* todo: add routing here */}
             <AddressSearchContainer />
-            <CampgroundsContainer />
+            <CampgroundsViewContainer />
           </div>
         </div>
       </div>

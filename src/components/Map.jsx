@@ -1,27 +1,38 @@
 import React, { Component } from 'react';
 
 class Map extends Component {
-  // todo refactor
+  constructor(props) {
+    super(props);
+
+    this.markers = [];
+  }
+
+  clearMarkers() {
+    this.markers.forEach(marker => {
+      marker.setMap(null);
+    });
+
+    this.markers = [];
+  }
+
   componentDidMount() {
-    const { latitude, longitude, campgrounds } = this.props;
-
-    const latLng = {
-      lat: latitude || 90,
-      lng: longitude || 90
-    };
-
-    const map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 10,
-      center: latLng,
+    this.map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: new google.maps.LatLng(41.850033, -87.6500523),
       mapTypeId: 'terrain'
     });
+  }
 
-    // customize so this looks like "home"
-    const marker = new google.maps.Marker({
-      position: latLng,
-      map: map
-    });
+  componentWillUpdate(nextProps) {
+    const { campgrounds, latitude, longitude } = nextProps;
 
+    this.map.setCenter(new google.maps.LatLng(latitude, longitude));
+    this.map.setZoom(10);
+
+    // clear any and all previous markers:
+    this.clearMarkers();
+
+    // create new markers for each campground:
     campgrounds.forEach(campground => {
       const marker = new google.maps.Marker({
         position: {
@@ -29,7 +40,7 @@ class Map extends Component {
           lng: parseFloat(campground.longitude),
           title: campground.facilityName
         },
-        map: map
+        map: this.map
       });
 
       const infowindow = new google.maps.InfoWindow({
@@ -38,9 +49,18 @@ class Map extends Component {
 
       marker.addListener('click', () => {
         this.props.selectCampground(campground.facilityID);
+      });
+
+      marker.addListener('mouseover', () => {
         infowindow.open(map, marker);
       });
-    })
+
+      marker.addListener('mouseout', () => {
+        infowindow.close(map, marker);
+      });
+
+      this.markers.push(marker);
+    });
   }
 
   render() {

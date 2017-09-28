@@ -2,21 +2,33 @@ import React, { Component } from 'react';
 import CampgroundCard from './CampgroundCard';
 
 class CampgroundList extends Component {
+  renderLoading() {
+    return <div className="notification">Loading...</div>;
+  }
+
+  renderCampgroundCards(campgrounds, selectedCampground) {
+    return campgrounds.map(campground => {
+      return (
+        <CampgroundCard
+          key={campground.facilityID}
+          campground={campground}
+          selectedCampground={selectedCampground}
+        />
+      );
+    })
+  }
+
   render() {
-    const { selectedCampground } = this.props;
+    const { selectedCampground, campgrounds, loading } = this.props;
 
     return (
       <div className="campground-list">
         {
-          this.props.campgrounds.map(campground => {
-            return (
-              <CampgroundCard
-                campground={campground}
-                selectedCampground={selectedCampground}
-              />
-            );
-          })
+          loading
+            ? this.renderLoading()
+            : this.renderCampgroundCards(campgrounds, selectedCampground)
         }
+
       </div>
     )
   }
