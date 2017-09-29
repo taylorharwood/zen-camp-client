@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class LeftNav extends Component {
   render() {
     return (
       <div className="left-nav">
-        <ul className="left-nav__items">
-          <li className="left-nav__item">Home</li>
-          <li className="left-nav__item">Find Camps</li>
-          <li className="left-nav__item">Your Favorites</li>
-        </ul>
+        <div className="left-nav__items">
+          <Link className="left-nav__item" to="/discover">Discover Camps</Link>
+          <Link className="left-nav__item" to="/favorites">Your Favorites</Link>
+        </div>
       </div>
     );
   }

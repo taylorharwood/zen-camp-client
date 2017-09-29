@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+
 import TopNav from './TopNav';
 import LeftNav from './LeftNav';
-import AddressSearchContainer from '../containers/AddressSearchContainer';
-import CampgroundsViewContainer from '../containers/CampgroundsViewContainer';
+import DiscoverLayout from '../layouts/DiscoverLayout';
+import FavoritesLayout from '../layouts/FavoritesLayout';
 
 class App extends Component {
   render() {
@@ -13,9 +15,9 @@ class App extends Component {
           <LeftNav />
 
           <div className="app__content">
-            {/* todo: add routing here */}
-            <AddressSearchContainer />
-            <CampgroundsViewContainer />
+            <Route exact path="/" component={DiscoverLayout} />
+            <Route path="/discover" component={DiscoverLayout} />
+            <Route path="/favorites" component={FavoritesLayout} />
           </div>
         </div>
       </div>
