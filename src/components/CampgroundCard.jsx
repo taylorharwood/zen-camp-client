@@ -26,6 +26,11 @@ class CampgroundCard extends Component {
       .join(' ');
   }
 
+  formatImageSize(src) {
+    return 'http://bulma.io/images/placeholders/1280x960.png';
+    // return `//reserveamerica.com/${src.replace('80x53', '540x360')}`;
+  }
+
   componentWillUpdate(nextProps) {
     if (nextProps.selectedCampground === nextProps.campground.facilityID) {
       this.scrollIntoView(this.campgroundCardRef);
@@ -39,7 +44,7 @@ class CampgroundCard extends Component {
       <div ref={(card) => { this.campgroundCardRef = card; }} className="campground-card card">
         <div className="card-image">
           <figure className="image is-4by3">
-            <img src="http://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image" />
+            <img src={this.formatImageSize(campground.faciltyPhoto)} alt="Placeholder image" />
           </figure>
         </div>
         <div className="card-content">
