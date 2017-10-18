@@ -15,7 +15,7 @@ class CampgroundList extends Component {
       return (
         <CampgroundCard
           key={campground.facilityID}
-         f campground={campground}
+          campground={campground}
           selectedCampground={selectedCampground}
         />
       );

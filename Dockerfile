@@ -13,5 +13,9 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-EXPOSE 80
+# This is needed to have access to the webpack CLI in teh container
+RUN npm install -g webpack
+RUN webpack --config webpack.prod.config.js
+
+EXPOSE 8081
 CMD [ "npm", "start" ]
