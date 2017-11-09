@@ -5,6 +5,7 @@ import TopNav from './TopNav';
 import LeftNav from './LeftNav';
 import DiscoverLayout from '../layouts/DiscoverLayout';
 import FavoritesLayout from '../layouts/FavoritesLayout';
+import CampgroundDetailLayout from '../layouts/CampgroundDetailLayout';
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
           <div className="app__content">
             <Route exact path="/" component={DiscoverLayout} />
             <Route path="/discover" component={DiscoverLayout} />
+            <Route path="/campgrounds/:parkId/contractID/:contractID" component={CampgroundDetailLayout} />
             <Route path="/favorites" component={FavoritesLayout} />
           </div>
         </div>

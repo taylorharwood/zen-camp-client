@@ -52,20 +52,21 @@ class AddressSearch extends Component {
             onSubmit={evt => this.onSubmit(evt)}
             className="address-search__form column"
           >
-            <div className="address-search__input field has-addons">
-              <p className="control is-expanded">
+            <div className="row">
+              <div className="address-search__input input-group col-md-6">
                 <input
                   id="address-search-autocomplete-input"
-                  className="input is-primary is-medium"
+                  className="form-control"
                   placeholder="Enter your address..."
                   value={address}
                   onChange={evt => setAddress(evt.target.value)}
                   type="text"
                 />
-              </p>
-              <p className="control is-expanded">
-                <button type="submit" className="button is-primary is-medium">Find campsites!</button>
-              </p>
+
+                <span className="input-group-btn">
+                  <button className="btn btn-secondary" type="submit">Find campsites!</button>
+                </span>
+              </div>                
             </div>
 
             <AddressSearchFilters {...this.props} />

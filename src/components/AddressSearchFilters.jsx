@@ -36,89 +36,72 @@ class AddressSearchFilters extends Component {
     const { setSiteType, setAmenity, setMaxPeople, setWaterfront } = this.props;
 
     return (
-      <section className="address-search__filters columns">
-        <div className="field column">
-          <div className="control is-expanded">
+      <section className="address-search__filters row">
+          <div className="form-group col-md-3">
             <label className="label">Site Type:</label>
 
-            <div className="select is-fullwidth">
-              <select
-                value={siteType}
-                onChange={evt => setSiteType(evt.target.value)}
-                name="siteType"
-                className="address-search__site-type"
-              >
-                {
-                  SITE_TYPES.map(option => {
-                    return <option key={option.value} value={option.value}>{option.type}</option>
-                  })
-                }
-              </select>
-            </div>
+            <select
+              value={siteType}
+              onChange={evt => setSiteType(evt.target.value)}
+              name="siteType"
+              className="address-search__site-type form-control"
+            >
+              {
+                SITE_TYPES.map(option => {
+                  return <option key={option.value} value={option.value}>{option.type}</option>
+                })
+              }
+            </select>
           </div>
-        </div>
 
-        <div className="field column">
-          <div className="control is-expanded">
+          <div className="form-group col-md-3">
             <label className="label">Primary Amenity:</label>
-
-            <div className="select is-fullwidth">
-              <select
-                value={amenity}
-                onChange={evt => setAmenity(evt.target.value)}
-                name="siteType"
-                className="address-search__amenity-type"
-              >
-                {
-                  AMENITY_TYPES.map(option => {
-                    return <option key={option.value} value={option.value}>{option.type}</option>
-                  })
-                }
-              </select>
-            </div>
+            <select
+              value={amenity}
+              onChange={evt => setAmenity(evt.target.value)}
+              name="siteType"
+              className="address-search__amenity-type form-control"
+            >
+              {
+                AMENITY_TYPES.map(option => {
+                  return <option key={option.value} value={option.value}>{option.type}</option>
+                })
+              }
+            </select>
           </div>
-        </div>
 
-        <div className="field column">
-          <div className="control is-expanded">
+        <div className="form-group col-md-3">
             <label className="label">Max People:</label>
 
-            <div className="select is-fullwidth">
-              <select
-                value={maxpeople}
-                onChange={evt => setMaxPeople(evt.target.value)}
-                name="siteType"
-                className="address-search__max-people"
-              >
-                {
-                  MAX_PEOPLE.map(option => {
-                    return <option key={option} value={option}>{option}</option>
-                  })
-                }
-              </select>
-            </div>
-          </div>
+            <select
+              value={maxpeople}
+              onChange={evt => setMaxPeople(evt.target.value)}
+              name="siteType"
+              className="address-search__max-people form-control"
+            >
+              {
+                MAX_PEOPLE.map(option => {
+                  return <option key={option} value={option}>{option}</option>
+                })
+              }
+            </select>
         </div>
 
-        <div className="field column">
-          <div className="control is-expanded">
+        <div className="form-group col-md-3">
             <label className="label">Waterfront sites:</label>
 
-            <div className="select is-fullwidth">
-              <select
-                value={waterfront}
-                onChange={evt => setWaterfront(evt.target.value)}
-                name="siteType"
-                className="address-search__waterfront"
-              >
-                {
-                  ['YES', 'NO'].map(option => {
-                    return <option key={option} value={option}>{option}</option>
-                  })
-                }
-              </select>
-            </div>
-          </div>
+            <select
+              value={waterfront}
+              onChange={evt => setWaterfront(evt.target.value)}
+              name="siteType"
+              className="address-search__waterfront form-control"
+            >
+              {
+                ['YES', 'NO'].map(option => {
+                  return <option key={option} value={option}>{option}</option>
+                })
+              }
+            </select>
         </div>
       </section>
     );
