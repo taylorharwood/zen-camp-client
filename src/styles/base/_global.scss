@@ -2,6 +2,10 @@ html, body, #root, .app {
   height: 100%;
 }
 
+body {
+  font-family: 'Barlow', sans-serif;
+}
+
 .label {
   font-weight: 400;
 }
@@ -11,5 +15,6 @@ a {
 }
 
 a:hover {
+  text-decoration: none;
   color: #2d2d2d;
 }

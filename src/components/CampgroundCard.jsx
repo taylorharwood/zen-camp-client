@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { formatCampgroundName } from '../utils/index';
 
 // smooth scrollIntoView polyfill:
 require('smoothscroll-polyfill').polyfill();
@@ -11,20 +12,6 @@ class CampgroundCard extends Component {
       block: "start",
       inline: "nearest"
     });
-  }
-
-  formatCampgroundName(facilityName) {
-    return facilityName
-      .trim()
-      .split(' ')
-      .map(word => {
-        if (word.length > 0) {
-          return word[0].toUpperCase() + word.slice(1).toLowerCase()
-        }
-
-        return '';
-      })
-      .join(' ');
   }
 
   formatImageSize(src) {
@@ -42,32 +29,33 @@ class CampgroundCard extends Component {
     const { campground } = this.props;
 
     return (
-      <Link to={`/campgrounds/${campground.facilityID}/contractID/${campground.contractID}`}>
-        <div ref={(card) => { this.campgroundCardRef = card; }} className="campground-card card">
-          <img className="card-image-top" src={this.formatImageSize(campground.faciltyPhoto)} alt="Placeholder image" />
-          <div className="card-body">
-            <h4 className="card-title">{this.formatCampgroundName(campground.facilityName)}</h4>
-            <br />
+      <div ref={(card) => { this.campgroundCardRef = card; }} className="campground-card card">
+        <Link to={`/campgrounds/${campground.facilityID}/contractID/${campground.contractID}`}>
+          <img className="card-img-top" src={this.formatImageSize(campground.faciltyPhoto)} alt="Placeholder image" />
+        </Link>
+        
+        <div className="card-body">
+          <h4 className="card-title">{formatCampgroundName(campground.facilityName)}</h4>
+          <br />
 
-            <div className={`alert ${campground.availabilityStatus === 'Y' ? 'alert-success' : 'alert-danger'}`}>
-              <p>Currently {campground.availabilityStatus === 'Y' ? 'Available' : 'Unavailable'}</p>
-            </div>
+          <div className={`alert ${campground.availabilityStatus === 'Y' ? 'alert-success' : 'alert-danger'}`}>
+            <span>Currently {campground.availabilityStatus === 'Y' ? 'Available' : 'Unavailable'}</span>
+          </div>
 
-            <div className="campground-card__details">
-              {
-                campground.sitesWithWaterHookup
-                  ? <p><i className="fa fa-bath"></i> Water available</p>
-                  : null
-              }
-              {
-                campground.sitesWithPetsAllowed
-                  ? <p><i className="fa fa-check"></i> Pet friendly</p>
-                  : null
-              }
-            </div>
+          <div className="campground-card__details">
+            {
+              campground.sitesWithWaterHookup
+                ? <p><i className="fa fa-bath"></i> Water available</p>
+                : null
+            }
+            {
+              campground.sitesWithPetsAllowed
+                ? <p><i className="fa fa-check"></i> Pet friendly</p>
+                : null
+            }
           </div>
         </div>
-      </Link>
+      </div>
     );
   }
 }

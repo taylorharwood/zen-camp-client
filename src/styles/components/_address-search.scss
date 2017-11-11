@@ -3,6 +3,12 @@
   background: #fff;
   border-bottom: 1px solid #eee;
 
+  &__title,
+  &__subtitle {
+    margin-bottom: 1.1rem;
+    color: #333;
+  }
+
   &__input {
     margin-bottom: 1.25rem !important;
     padding-bottom: 1rem;

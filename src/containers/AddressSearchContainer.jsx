@@ -7,6 +7,7 @@ import AddressSearch from '../components/AddressSearch';
 
 class AddressSearchContainer extends Component {
   render() {
+    console.log(this.props.siteType)
     return <AddressSearch {...this.props} />;
   }
 }

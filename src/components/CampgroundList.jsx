@@ -8,7 +8,7 @@ class CampgroundList extends Component {
 
   renderCampgroundCards(campgrounds, selectedCampground) {
     if (!campgrounds.length) {
-      return <div className="notification">Search for campgrounds by typing in a city above!</div>;
+      return <div className="alert alert-primary">Search for campgrounds by typing in a city above!</div>;
     }
 
     return campgrounds.map(campground => {

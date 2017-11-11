@@ -5,7 +5,7 @@ class TopNav extends Component {
     return (
       <div className="top-nav">
         <div className="top-nav__left">
-          <h3 className="top-nav__title">Zen Camp</h3>
+          <h3 className="top-nav__title">Zen <span>Camp</span></h3>
         </div>
         <div className="top-nav__right"></div>
       </div>

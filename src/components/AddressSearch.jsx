@@ -52,6 +52,7 @@ class AddressSearch extends Component {
             onSubmit={evt => this.onSubmit(evt)}
             className="address-search__form column"
           >
+            <h3 className="address-search__title">Let's start with an address</h3>
             <div className="row">
               <div className="address-search__input input-group col-md-6">
                 <input

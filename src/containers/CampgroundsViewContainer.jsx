@@ -70,6 +70,18 @@ const mapDispatchToProps = dispatch => {
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   graphql(query, {
-    skip: ({ latitude, longitude }) => !latitude || !longitude
+    skip: ({ latitude, longitude }) => !latitude || !longitude,
+    options: props => {
+      return {
+        variables: {
+          latitude: props.latitude,
+          longitude: props.longitude,
+          maxPeople: props.maxPeople,
+          siteType: props.siteType,
+          amenity: props.amenity,
+          waterfront: props.waterfront
+        }
+      };
+    }
   })
 )(CampgroundsViewContainer);

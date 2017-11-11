@@ -27,7 +27,7 @@ class Map extends Component {
     const { campgrounds, latitude, longitude } = nextProps;
 
     this.map.setCenter(new google.maps.LatLng(latitude, longitude));
-    this.map.setZoom(10);
+    this.map.setZoom(8);
 
     // clear any and all previous markers:
     this.clearMarkers();
