@@ -8,7 +8,7 @@ class AddressSearchFilters extends Component {
 
     return (
       <section className="address-search__filters">
-          <h4 className="address-search__subtitle">Additional filtering</h4>
+          <h5 className="address-search__subtitle">Additional filtering</h5>
           <div className="row">
             <div className="form-group col-md-3">
               <label className="label">Site Type:</label>
